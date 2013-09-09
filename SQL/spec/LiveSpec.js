@@ -7,7 +7,7 @@ var request = require("request"); // You might need to npm install the request m
 describe("Persistent Node Chat Server", function() {
   var dbConnection;
 
-  beforeEach(function() {
+  beforeEach(function(done) {
     dbConnection = mysql.createConnection({
     /* TODO: Fill this out with your mysql username */
       user: "",
@@ -21,7 +21,7 @@ describe("Persistent Node Chat Server", function() {
 
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
-    dbConnection.query("DELETE FROM " + tablename);
+    dbConnection.query("DELETE FROM " + tablename, done);
   });
 
   afterEach(function() {
